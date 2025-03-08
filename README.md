@@ -1,19 +1,43 @@
 # Two-Pass-Assembler-and-Emulator-for-SIMPLE-Assembly
 The aim of this project is to write a two pass assembler and emulator for an extended SIMPLE instruction set.
-Assembly Language
-This assembly language is for a machine with four registers,
- Two registers, A & B, arranged as an internal stack.
- A program counter, PC
- A stack pointer, SP
-These registers are 32 bits in size. Instructions have either no operands or a single operand. The
-operand is a signed 2's complement value. The encoding uses the bottom 8 bits for opcode and
-the upper 24 bits for operand.
-As with most assembly languages, this is line based (one statement per line). Comments begin
-with a ';' and anything on the line after the ';' is ignored. Blank lines and lines containing only a
-comment are permitted (and ignored). White space (' ' and tabs) are permitted at the beginning of
-a line (and ignored). Label definitions consist of the label name followed by a ':', and an optional
-statement (there is not necessarily a space between the ':' and the statement). A label use is just
-the label name. For branch instructions label use should calculate the branch displacement. For
-non-branch instructions, the label value should be used directly. A valid label name is an
-alphanumeric string beginning with a letter . An operand is either a label or a number, the
-number can be decimal, hex or octal.
+ <h1>SIMPLE Assembly Language</h1>
+    <p>This assembly language is for a machine with four registers:</p>
+    <ul>
+        <li>Two registers, A & B, arranged as an internal stack.</li>
+        <li>A program counter (PC).</li>
+        <li>A stack pointer (SP).</li>
+    </ul>
+    <p>These registers are 32 bits in size. Instructions have either no operands or a single operand.</p>
+    <h2>Syntax and Labels</h2>
+    <p>Each statement consists of a mnemonic (instruction name) and an optional operand (number or label).</p>
+    <p>Comments start with a semicolon (<code>;</code>) and anything after it is ignored.</p>
+    <p>Valid labels are alphanumeric and start with a letter.</p>
+    
+<h1>Instruction Set </h1>
+Mnemonic   | Opcode | Operand | Description
+---------------------------------------------
+ldc        | 0      | value   | Load accumulator with value
+adc        | 1      | value   | Add value to accumulator
+ldl        | 2      | offset  | Load local
+stl        | 3      | offset  | Store local
+ldnl       | 4      | offset  | Load non-local
+stnl       | 5      | offset  | Store non-local
+add        | 6      |         | Addition
+sub        | 7      |         | Subtraction
+shl        | 8      |         | Shift left
+shr        | 9      |         | Shift right
+adj        | 10     | value   | Adjust stack pointer (SP)
+a2sp       | 11     |         | Transfer A to SP
+sp2a       | 12     |         | Transfer SP to A
+call       | 13     | offset  | Call procedure
+return     | 14     |         | Return from procedure
+brz        | 15     | offset  | Branch if zero
+brlz       | 16     | offset  | Branch if less than zero
+br         | 17     | offset  | Unconditional branch
+HALT       | 18     |         | Stop execution
+SET        |        | value   | Set label to a specific value (optional)
+    </pre>
+    
+<h1>Listing File Format</h1>
+    <p>The assembler produces a listing file, showing the values stored at each address. The format consists of an address followed by zero or one 32-bit values represented as 8 hex characters.</p>
+</body>
