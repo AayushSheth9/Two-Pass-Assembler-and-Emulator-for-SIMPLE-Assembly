@@ -1,0 +1,169 @@
+Declaration of Authorship:
+All the files(asm.cpp,emu.cpp,all sample tests and custom tests, .o files .lst files and .log files) are owned by 
+NAME: AAYUSH SHETH
+ROLL NO: 2301CS02
+under the project of the subject 
+CS2102: Digital Logic and Computer Operations
+
+
+
+
+Files:
+==========
+*All the files I submitted, asm.cpp , emu.cpp and claims.txt, have my name and student id at the start, along with a declaration of authorship.
+
+The evidence for Assembler including the output files from the four test examples given (test1 to test4) and bubblesort has also been uploaded. They are sample test1(3 output files), sampletest2(1 output file), sampletest3(3 output files), 
+sampletest4(3 output files) and BubbleSort(3 output files) and two additional test (with output files).
+
+Also, I have included emu.cpp in each of the subfolders(of all respective tests) to test its working.
+
+
+Compilation instructions:
+=========================
+All the tests have been included int heir corresponding input.txt files in their respective folder.
+
+    For asm.cpp
+    g++ asm.cpp -o asm
+    
+
+    For emu.cpp
+    g++ emu.cpp -o emu
+    emu 'command' machineCode.o        (if we have to test test1 file)
+
+
+
+
+Assumptions:
+============
+       * Listing file (.lst) and Object file(.o) are generated only when there are no errors in the input Assembly code,  
+      otherwise only Error file (logfile.txt) is generated.
+    * If any address is accessed more than size of container of machine code then emu give assume this to be an infinte loop and will give error.
+
+
+=============================
+Program format and structure:
+=============================
+1. The assembler:
+    
+    * Every instruction is implemented.
+    * It contains a table of instruction names and expected operands.
+    * It is a 2 pass assembler (implemented in asm.cpp)
+    * outputs the required correct information in the form of three files
+       *  logfile.txt file for errors and warnings
+       *  .lst file for listing 
+       *  .o file for machine code object
+    * All important errors are diagnosed and corresponding error file gets generated (named logfilelname_log.txt)
+    * consistent and sensible formatting with sensible program structure. 
+    * sensible variable, function & type names with explanatory comments.
+		* Advanced listing file gets generated. (named listfile.l)
+		* assembles test programs (including bubble sort)
+        * Machine code object file gets generated (named machineCode.o)
+	  * SET instruction is also implemented (which carries extra marks).
+    *  Code is written in C++ with optimum time and space complexity.
+    * Additional tests with outputs is also included
+
+2. The Emulator:
+
+    * After Compiling the emu.cpp we will get emu.exe we can use it run machine code we got from asm in form of .o file 
+    * After that it will ask for command that you have to run
+    * In my emu i have provided 6 options -trace,-after,-before,-isa,-write, -read there details will be mentioned while running the code
+    * If error occured in asm then .o is not creating hence leading to emu not working for non existing file
+
+
+=============================
+Testing:
+=============================
+
+1. The assembler:
+
+I have tested five examples(4 test files and bubblesort) shown as below. The errors only occurred in the file test2.asm and custom test2 and the program immediately stopped on the second pass. 
+
+The others were tested without any errors detected and produced three output files, listing file, 
+error log file and machine readable object file, for each example.
+
+2. The Emulator:
+
+I Have tested total 5 files shown below . Which are running properly and giving correct output
+I have provided proof of bubble sort and custom1 as they have noticable changes 
+
+
+1)
+Test 1: BubbleSort
+#Output: 
+a. listfile.lst
+b. logfile.txt (without any error messages)
+c. machineCode.o
+
+2) 
+#Input: custom test 1
+#Output:
+a. listfile.lst
+b. logfile.txt (without any error messages)
+c. machineCode.o
+
+3) 
+#Input: custom test 2
+#Output:
+a. custom2log.txt (with error messages shown as below and also in log file)
+
+Error on Line: 3
+Duplicate label defined
+Error on Line: 4
+Operand not specified.
+Error on Line: 5
+Invalid extra information in the line.
+Error on Line: 7
+Operand not specified.
+Error on Line: 8
+Operand not specified.
+Error on Line: 9
+Invalid extra information in the line.
+
+
+
+4)
+#Input: sample test 1
+#Output: 
+a. listfile.lst
+b. logfile.txt (without any error messages)
+c. machineCode.o
+
+5)
+#Input: Sample test 2 
+#Output: 
+a. test2log.txt (with error messages shown as below and also in log file)
+
+Error on Line: 4
+Duplicate label defined
+Error on Line: 5
+Undefined label
+Error on Line: 6
+Not a valid number/operand.
+Error on Line: 7
+Operand not specified.
+Error on Line: 8
+Unexpected operand detected.
+Error on Line: 9
+Invalid extra information in the line.
+Error on Line: 10
+Label name is invalid. Follow the rules of naming of labels.
+Error on Line: 11
+Invalid Mnemonic.
+Error on Line: 12
+Invalid Mnemonic.
+
+
+
+6)
+#Input:Sample test 3
+#Output: 
+listfile.lst
+b. logfile.txt (without any error messages)
+c. machineCode.o
+
+7)
+#Input: Sample test 4
+#Output: 
+listfile.lst
+b. logfile.txt (without any error messages)
+c. machineCode.o
