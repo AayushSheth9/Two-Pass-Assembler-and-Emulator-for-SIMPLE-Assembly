@@ -1,76 +1,9 @@
-; Mean of eight numbers
-result: data 0   ; Result (mean of num1, num2, num3, num4, num5, num6,num7, num8)
-num1: data 0o78    ; First number
-num2: data 20    ; Second number
-num3: data 30    ; Third number
-num4: data 40    ; Fourth number
-num5: data 50	; Fifth number
-num6: data 60	; Sixth number
-num7: data 70	; Seventh number
-num8: data 80	; Eighth number
-
-	
-	ldc result ; load address of result
-	a2sp       ;
-        ldc num1   ; A := num1
-	ldnl 0
-	ldc result
-	ldnl 0
-	add
-	stl 0
-	ldc num2
-	ldnl 0
-	ldc result
-	ldnl 0
-	add
-	stl 0
-	ldc num3
-	ldnl 0
-	ldc result
-	ldnl 0
-	add
-	stl 0
-	ldc num4
-	ldnl 0
-	ldc result
-	ldnl 0
-	add
-	stl 0
-	ldc num5
-	ldnl 0
-	ldc result
-	ldnl 0
-	add
-	stl 0
-	ldc num6
-	ldnl 0
-	ldc result
-	ldnl 0
-	add
-	stl 0
-	ldc num7
-	ldnl 0
-	ldc result
-	ldnl 0
-	add
-	stl 0
-	ldc num8
-	ldnl 0
-	ldc result
-	ldnl 0
-	add
-	stl 0
-	ldl 0
-	ldc 3
-	shr 
-	stl 0
-       ; adc num2   ; A := A + num2
-       ; adc num3   ; A := A + num3
-       ; adc num4   ; A := A + num4
-	; adc num5   ; A := A + num5
-	; adc num6   ; A := A + num6
-	; adc num7   ; A := A + num7
-	; adc num8   ; A := A + num8
-	; ldc 3      ;
-        ; shr      ; A := A >> 3 (Divide by 4, equivalent to A / 4)
-        ; stl 0 ; Store result
+START:  ldc 5        ; Correct instruction, loads 5 into A register
+DUPLICATE: ldc 10     ; Correct instruction, loads 10 into A register
+DUPLICATE: ldc 15     ; Error: Duplicate label "DUPLICATE"
+MISSING_OPERAND: ldc  ; Error: Missing operand, "ldc" requires an operand
+EXTRA_OPERAND: adc 10 20 ; Error: Extra operand
+DATA1: data 0x000A    ; Define data with hexadecimal value 0x000A
+DATA2: data           ; Error: Missing operand
+MOV_DATA: stnl        ; Error: Missing operand for "stnl" (store indirect)
+LOAD_DATA: ldc DATA1 5 ; Error: Extra operand, "ldc" takes only one operand
