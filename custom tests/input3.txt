@@ -1,0 +1,37 @@
+
+    ldc result   ; Load address of result
+    a2sp         ; Store address in SP
+    ldc 0        ; Initialize accumulator to 0 (A = 0)
+    stl 0        ; Store accumulator at result
+
+    ldc size     ; Load array size into A
+    stl 1        ; Store size in SP + 1 (counter)
+    ldc array    ; Load starting address of the array
+    stl 2        ; Store base address in SP + 2
+
+sum_loop:
+    ldl 1        ; Load counter
+    brz done     ; If counter == 0, finish summing
+    ldl 2        ; Load base address of the array
+    ldl 1        ; Load current counter value
+    adc -1       ; Adjust counter to match 0-based indexing
+    adc array    ; Add base address to get the current element's address
+    ldnl 0       ; Load the current element value into A
+    ldl 0        ; Load the current accumulator value
+    add          ; Add the element to the accumulator
+    stl 0        ; Store updated accumulator
+
+    ldl 1        ; Load counter
+    adc -1       ; Decrement counter
+    stl 1        ; Store updated counter
+    br sum_loop  ; Repeat the loop
+
+done:
+    HALT         ; End program
+array: data 0o12    ; First element of the array
+       data 0x14    ; Second element
+       data 035    ; Third element
+       data 40    ; Fourth element
+       data 50    ; Fifth element
+size:  SET 5     ; Size of the array
+result: data 0   ; Result (sum of array elements)
